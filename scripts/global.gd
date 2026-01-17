@@ -1,0 +1,16 @@
+extends Node
+
+enum CHARACTERS{
+	RACCOON,
+	DOG,
+	CROW,
+	RABBIT,
+	ALL
+}
+
+enum EXTRA_INTERACTIONS {
+	CHANGE_SCENE,
+	GIVE_ITEM,
+	LEAVE,
+	NOTHING
+}

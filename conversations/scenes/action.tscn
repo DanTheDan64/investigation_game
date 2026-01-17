@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://djicwa6pw5gyl"]
+
+[ext_resource type="Script" uid="uid://bmuj3gocbvkap" path="res://conversations/scripts/action.gd" id="1_lkr3s"]
+
+[node name="action" type="Button"]
+theme_override_font_sizes/font_size = 36
+text = "jkhgjghjrghjfgjfjygfhjygjtdjhytdjg ydhjyghjyhj"
+autowrap_mode = 2
+script = ExtResource("1_lkr3s")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
