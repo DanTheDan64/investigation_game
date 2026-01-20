@@ -21,8 +21,13 @@ var npc: Object
 var interaction_progression: int = 0
 var talking_information: Array
 
+#change character action access vars
+var access_changing_information: action_changes_detail
+var character_list_to_change: Array
+
 @export var leave_action: export_action_base
 @export var continue_action: export_action_base
+@export var swap_action: export_action_base
 
 func _ready():
 	visible = false
@@ -49,7 +54,6 @@ func make_actions(actions_given):
 	# make new actions
 	for item in actions_given:
 		# if the player is using a character with access to this option
-		print(item)
 		if (player.character in item.character_connected)\
 		or (global.CHARACTERS.ALL in item.character_connected):
 			
@@ -60,7 +64,28 @@ func make_actions(actions_given):
 
 
 func action_made(action):
-	if action == "leave":
+	if action == "swap out now":
+		#ged rid of the character the player is already using
+		npc.visible = false
+		npc.interaction_allowed = false
+		
+		#bring the discarded one back
+		for child in npc.get_parent().get_children():
+			if child.get_node("swapping_information").swap_to == player.character:
+				child.visible = true
+				child.interaction_allowed = true
+				
+				break
+		
+		
+		player.change_state(player.STATES.MOVING)
+		player.change_character(npc.get_node("swapping_information").swap_to)
+		
+		visible = false
+		
+		return
+	
+	if action == "leave now":
 		player.change_state(player.STATES.MOVING)
 		visible = false
 		return
@@ -75,41 +100,37 @@ func action_made(action):
 		#if there is stuff to iterate over
 		if not dialogue[action][1].is_empty():
 			
-			#iterate over actions and dialoge, brute force finding matches
-			
-			
-			var character_list_to_change_index: int
-			
-			# find the action and its information by iterating through actions
-			for index in range(len(actions)):
-				if actions[index].action == action:
-					character_list_to_change_index = index
-					break
-			
-			# find the action and its information by iterating through dialogue action_changes
-			var access_changing_information: action_changes_detail
-			
-			for item in dialogue[action][1]: ################ look at this!!
-				if item.action == action: ################ look at this!!
-					access_changing_information = item ################ look at this!!
-					break ################ look at this!!
-			
-			print(actions[character_list_to_change_index].character_connected)
-			
-			# iterate over changing info to bring over to actions
-			for change_indicator in access_changing_information.access_change:
-				# if the same character is in both lists
-				if actions[character_list_to_change_index].character_connected.has(change_indicator.character_to_effect):
-					if change_indicator.action_access == false: # if the character is to be removed (done for safety)
-						actions[character_list_to_change_index].character_connected.remove_at(\
-						actions[character_list_to_change_index].character_connected.find(change_indicator.character_to_effect))
-					
-				#if the character is in the change list but not actions
-				elif change_indicator.action_access == true: # if the character is to be added (done for safety)
-					actions[character_list_to_change_index].append()
-			
-			print(actions[character_list_to_change_index].character_connected)
-			
+			#iterate over list of accesses to change
+			for item in dialogue[action][1]:
+				access_changing_information = item
+				print(item.action)
+				
+				
+				
+				
+				# find a matching set and continue
+				for index in range(len(actions)):
+					if actions[index].action != access_changing_information.action:
+						#print(actions[index].action + ": no match")
+						continue
+					else:
+						character_list_to_change = actions[index].character_connected
+						#print(actions[index].action + ": match")
+						
+						# iterate over changing info to bring over to actions
+						for change_indicator in access_changing_information.access_change:
+							# if the same character is in both lists
+							if character_list_to_change.has(change_indicator.character_to_effect):
+								if change_indicator.action_access == false: # if the character is to be removed (done for safety)
+									character_list_to_change.remove_at(\
+									character_list_to_change.find(change_indicator.character_to_effect))
+								
+							#if the character is in the change list but not actions
+							elif change_indicator.action_access == true: # if the character is to be added (done for safety)
+								character_list_to_change.append(change_indicator.character_to_effect)
+						break
+				
+				#print()
 	
 	#speak
 	talking_information = saved_action[0]
@@ -124,9 +145,12 @@ func action_made(action):
 				global.EXTRA_INTERACTIONS.NOTHING: pass
 				global.EXTRA_INTERACTIONS.CHANGE_SCENE: print("CHANGE_SCENE")
 				global.EXTRA_INTERACTIONS.LEAVE: 
-					make_actions([continue_action])
+					make_actions([leave_action])
 					return
 				global.EXTRA_INTERACTIONS.GIVE_ITEM: print("GIVE_ITEM")
+				global.EXTRA_INTERACTIONS.SWAP_CHARACTER: 
+					make_actions([swap_action])
+					return
 			
 			make_actions(actions)
 			

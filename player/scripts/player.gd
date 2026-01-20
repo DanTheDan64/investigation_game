@@ -56,7 +56,7 @@ func _input(event):
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	change_character(CHARACTERS.CROW)
+	change_character(CHARACTERS.RACCOON)
 
 
 func _physics_process(delta):

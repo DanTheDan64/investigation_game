@@ -1,19 +1,20 @@
-[gd_scene load_steps=47 format=3 uid="uid://tbt13yx4jqlu"]
+[gd_scene load_steps=88 format=3 uid="uid://tbt13yx4jqlu"]
 
 [ext_resource type="Script" uid="uid://c6hjou7qnhtq1" path="res://player/scripts/player.gd" id="1_yrj62"]
-[ext_resource type="Texture2D" uid="uid://cekynk6au5q46" path="res://assets/2D/icon.svg" id="2_cujlr"]
 [ext_resource type="Texture2D" uid="uid://cwde03yxl5jhb" path="res://assets/2D/raccoon_standalone.png" id="2_xxnll"]
-[ext_resource type="Script" uid="uid://dd1lhpc8tx8bs" path="res://conversations/scripts/npc.gd" id="3_0klkc"]
 [ext_resource type="Texture2D" uid="uid://dhgxpohpcf3ri" path="res://assets/2D/dog_standalone.png" id="3_4cq84"]
 [ext_resource type="Script" uid="uid://whl7imbeho87" path="res://conversations/scripts/conversation_manager.gd" id="3_cujlr"]
 [ext_resource type="Script" uid="uid://c70mklo1x8ejh" path="res://conversations/scripts/actions_container.gd" id="4_g22w2"]
 [ext_resource type="Texture2D" uid="uid://6qljj14tps4p" path="res://assets/2D/crow_standalone.png" id="4_hyf7r"]
 [ext_resource type="Texture2D" uid="uid://dfgbqmpvll76r" path="res://assets/2D/rabbit_standalone.png" id="5_vlj36"]
-[ext_resource type="Script" uid="uid://cyfwhfe2kje38" path="res://conversations/resources/export_action_base.gd" id="7_hyf7r"]
-[ext_resource type="Script" uid="uid://cyki6qnhkgn0e" path="res://conversations/resources/export_dialogue_base.gd" id="8_64m0k"]
-[ext_resource type="Script" uid="uid://cg1jpv1aml84u" path="res://conversations/resources/action_changes_resource.gd" id="9_qw4sj"]
-[ext_resource type="Script" uid="uid://c3lald0g7kupl" path="res://conversations/resources/action_changes_information.gd" id="10_22ap8"]
-[ext_resource type="Script" uid="uid://dmxv4647md3in" path="res://conversations/resources/words_resource.gd" id="11_emxd4"]
+[ext_resource type="PackedScene" uid="uid://bgoh0j7k1nbmr" path="res://conversations/scenes/npc_base.tscn" id="6_xxnll"]
+[ext_resource type="Script" uid="uid://cyfwhfe2kje38" path="res://conversations/structure_resources/export_action_base.gd" id="7_hyf7r"]
+[ext_resource type="Script" uid="uid://dmxv4647md3in" path="res://conversations/structure_resources/words_resource.gd" id="9_hyf7r"]
+[ext_resource type="Script" uid="uid://cyki6qnhkgn0e" path="res://conversations/structure_resources/export_dialogue_base.gd" id="10_4cq84"]
+[ext_resource type="Script" uid="uid://cg1jpv1aml84u" path="res://conversations/structure_resources/action_changes_resource.gd" id="11_vlj36"]
+[ext_resource type="Script" uid="uid://c3lald0g7kupl" path="res://conversations/structure_resources/action_changes_information.gd" id="13_esd35"]
+[ext_resource type="Script" uid="uid://cp34hhm5wk623" path="res://scripts/character_swapping_manager.gd" id="14_qw4sj"]
+[ext_resource type="PackedScene" uid="uid://dopqymm5dahgj" path="res://conversations/scenes/swapping_information.tscn" id="15_qw4sj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_808s8"]
 
@@ -26,154 +27,21 @@ sky_material = SubResource("ProceduralSkyMaterial_lc78t")
 background_mode = 2
 sky = SubResource("Sky_g8iyb")
 
-[sub_resource type="Resource" id="Resource_4cq84"]
-script = ExtResource("7_hyf7r")
-action = "leave"
-character_connected = Array[int]([4])
-metadata/_custom_type_script = "uid://cyfwhfe2kje38"
-
-[sub_resource type="Resource" id="Resource_x05qy"]
-script = ExtResource("7_hyf7r")
-action = "(smell)"
-character_connected = Array[int]([2])
-metadata/_custom_type_script = "uid://cyfwhfe2kje38"
-
-[sub_resource type="Resource" id="Resource_0253g"]
-script = ExtResource("7_hyf7r")
-action = "why do you smell like disinfectant?"
-metadata/_custom_type_script = "uid://cyfwhfe2kje38"
-
-[sub_resource type="Resource" id="Resource_oqpth"]
-script = ExtResource("11_emxd4")
-title = "npc"
-text = "bye"
-metadata/_custom_type_script = "uid://dmxv4647md3in"
-
-[sub_resource type="Resource" id="Resource_64m0k"]
-script = ExtResource("11_emxd4")
-title = "you"
-text = "bye!"
-metadata/_custom_type_script = "uid://dmxv4647md3in"
-
-[sub_resource type="Resource" id="Resource_kvok1"]
-script = ExtResource("8_64m0k")
-action = "leave"
-words = Array[ExtResource("11_emxd4")]([SubResource("Resource_oqpth"), SubResource("Resource_64m0k")])
-greater_details = 2
-metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
-
-[sub_resource type="Resource" id="Resource_qw4sj"]
-script = ExtResource("10_22ap8")
-character_to_effect = 2
-metadata/_custom_type_script = "uid://c3lald0g7kupl"
-
-[sub_resource type="Resource" id="Resource_22ap8"]
-script = ExtResource("9_qw4sj")
-action = "(smell)"
-access_change = Array[ExtResource("10_22ap8")]([SubResource("Resource_qw4sj")])
-metadata/_custom_type_script = "uid://cg1jpv1aml84u"
-
-[sub_resource type="Resource" id="Resource_emxd4"]
-script = ExtResource("10_22ap8")
-character_to_effect = 3
-action_access = true
-metadata/_custom_type_script = "uid://c3lald0g7kupl"
-
-[sub_resource type="Resource" id="Resource_203i0"]
-script = ExtResource("10_22ap8")
-character_to_effect = 2
-action_access = true
-metadata/_custom_type_script = "uid://c3lald0g7kupl"
-
-[sub_resource type="Resource" id="Resource_t3w23"]
-script = ExtResource("9_qw4sj")
-action = "why do you smell like disinfectant?"
-access_change = Array[ExtResource("10_22ap8")]([SubResource("Resource_emxd4"), SubResource("Resource_203i0")])
-metadata/_custom_type_script = "uid://cg1jpv1aml84u"
-
-[sub_resource type="Resource" id="Resource_1wpoa"]
-script = ExtResource("11_emxd4")
-title = "npc"
-text = "wha"
-metadata/_custom_type_script = "uid://dmxv4647md3in"
-
-[sub_resource type="Resource" id="Resource_iu67r"]
-script = ExtResource("11_emxd4")
-title = "npc"
-text = "why..?"
-metadata/_custom_type_script = "uid://dmxv4647md3in"
-
-[sub_resource type="Resource" id="Resource_uf8mi"]
-script = ExtResource("11_emxd4")
-title = "npc"
-text = "please leave"
-metadata/_custom_type_script = "uid://dmxv4647md3in"
-
-[sub_resource type="Resource" id="Resource_s7ufk"]
-script = ExtResource("8_64m0k")
-action = "(smell)"
-words = Array[ExtResource("11_emxd4")]([SubResource("Resource_1wpoa"), SubResource("Resource_iu67r"), SubResource("Resource_uf8mi")])
-action_changes = Array[ExtResource("9_qw4sj")]([SubResource("Resource_22ap8"), SubResource("Resource_t3w23")])
-greater_details = 3
-metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
-
-[sub_resource type="Resource" id="Resource_rkaph"]
-script = ExtResource("10_22ap8")
-character_to_effect = 2
-metadata/_custom_type_script = "uid://c3lald0g7kupl"
-
-[sub_resource type="Resource" id="Resource_ge3pg"]
-script = ExtResource("10_22ap8")
-character_to_effect = 3
-metadata/_custom_type_script = "uid://c3lald0g7kupl"
-
-[sub_resource type="Resource" id="Resource_cmf6o"]
-script = ExtResource("9_qw4sj")
-action = "why do you smell like disinfectant?"
-access_change = Array[ExtResource("10_22ap8")]([SubResource("Resource_rkaph"), SubResource("Resource_ge3pg")])
-metadata/_custom_type_script = "uid://cg1jpv1aml84u"
-
-[sub_resource type="Resource" id="Resource_67xdk"]
-script = ExtResource("11_emxd4")
-title = "npc"
-text = "I.. uh.."
-metadata/_custom_type_script = "uid://dmxv4647md3in"
-
-[sub_resource type="Resource" id="Resource_juyqu"]
-script = ExtResource("11_emxd4")
-title = "npc"
-text = "idk.."
-metadata/_custom_type_script = "uid://dmxv4647md3in"
-
-[sub_resource type="Resource" id="Resource_01e4t"]
-script = ExtResource("11_emxd4")
-title = "npc"
-text = "..."
-metadata/_custom_type_script = "uid://dmxv4647md3in"
-
-[sub_resource type="Resource" id="Resource_g2vx5"]
-script = ExtResource("8_64m0k")
-action = "why do you smell like disinfectant?"
-words = Array[ExtResource("11_emxd4")]([SubResource("Resource_67xdk"), SubResource("Resource_juyqu"), SubResource("Resource_01e4t")])
-action_changes = Array[ExtResource("9_qw4sj")]([SubResource("Resource_cmf6o")])
-greater_details = 3
-metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ln6bc"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_trcpl"]
-radius = 1.0
-height = 2.5
-
 [sub_resource type="Resource" id="Resource_d7nge"]
 script = ExtResource("7_hyf7r")
-action = "leave"
+action = "leave now"
 character_connected = Array[int]([4])
 metadata/_custom_type_script = "uid://cyfwhfe2kje38"
 
 [sub_resource type="Resource" id="Resource_rkh4j"]
 script = ExtResource("7_hyf7r")
 action = "continue"
+character_connected = Array[int]([4])
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_qo2hn"]
+script = ExtResource("7_hyf7r")
+action = "swap out now"
 character_connected = Array[int]([4])
 metadata/_custom_type_script = "uid://cyfwhfe2kje38"
 
@@ -184,23 +52,408 @@ font_size = 48
 line_spacing = 12.81
 font_size = 36
 
+[sub_resource type="Resource" id="Resource_vlj36"]
+script = ExtResource("7_hyf7r")
+action = "leave"
+character_connected = Array[int]([4])
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_esd35"]
+script = ExtResource("7_hyf7r")
+action = "how are you?"
+character_connected = Array[int]([3])
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_64m0k"]
+script = ExtResource("7_hyf7r")
+action = "(stare)"
+character_connected = Array[int]([2])
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_qw4sj"]
+script = ExtResource("7_hyf7r")
+action = "point out thing"
+character_connected = Array[int]([2])
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_x05qy"]
+script = ExtResource("7_hyf7r")
+action = "I'm tired"
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_0253g"]
+script = ExtResource("7_hyf7r")
+action = "I'm also alright"
+character_connected = Array[int]([0])
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_22ap8"]
+script = ExtResource("9_hyf7r")
+title = "intro guy"
+text = "ok, bye!"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_emxd4"]
+script = ExtResource("10_4cq84")
+action = "leave"
+words = Array[ExtResource("9_hyf7r")]([SubResource("Resource_22ap8")])
+greater_details = 3
+metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
+
+[sub_resource type="Resource" id="Resource_203i0"]
+script = ExtResource("13_esd35")
+character_to_effect = 3
+metadata/_custom_type_script = "uid://c3lald0g7kupl"
+
+[sub_resource type="Resource" id="Resource_oqpth"]
+script = ExtResource("11_vlj36")
+action = "how are you?"
+access_change = Array[ExtResource("13_esd35")]([SubResource("Resource_203i0")])
+metadata/_custom_type_script = "uid://cg1jpv1aml84u"
+
+[sub_resource type="Resource" id="Resource_kvok1"]
+script = ExtResource("13_esd35")
+character_to_effect = 3
+action_access = true
+metadata/_custom_type_script = "uid://c3lald0g7kupl"
+
+[sub_resource type="Resource" id="Resource_t3w23"]
+script = ExtResource("11_vlj36")
+action = "I'm tired"
+access_change = Array[ExtResource("13_esd35")]([SubResource("Resource_kvok1")])
+metadata/_custom_type_script = "uid://cg1jpv1aml84u"
+
+[sub_resource type="Resource" id="Resource_1wpoa"]
+script = ExtResource("13_esd35")
+character_to_effect = 3
+action_access = true
+metadata/_custom_type_script = "uid://c3lald0g7kupl"
+
+[sub_resource type="Resource" id="Resource_iu67r"]
+script = ExtResource("11_vlj36")
+action = "I'm also alright"
+access_change = Array[ExtResource("13_esd35")]([SubResource("Resource_1wpoa")])
+metadata/_custom_type_script = "uid://cg1jpv1aml84u"
+
+[sub_resource type="Resource" id="Resource_uf8mi"]
+script = ExtResource("9_hyf7r")
+title = "intro guy"
+text = "I'm alright"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_s7ufk"]
+script = ExtResource("9_hyf7r")
+title = "intro guy"
+text = "what about you?"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_rkaph"]
+script = ExtResource("10_4cq84")
+action = "how are you?"
+words = Array[ExtResource("9_hyf7r")]([SubResource("Resource_uf8mi"), SubResource("Resource_s7ufk")])
+action_changes = Array[ExtResource("11_vlj36")]([SubResource("Resource_oqpth"), SubResource("Resource_t3w23"), SubResource("Resource_iu67r")])
+metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
+
+[sub_resource type="Resource" id="Resource_ge3pg"]
+script = ExtResource("13_esd35")
+character_to_effect = 3
+metadata/_custom_type_script = "uid://c3lald0g7kupl"
+
+[sub_resource type="Resource" id="Resource_cmf6o"]
+script = ExtResource("11_vlj36")
+action = "I'm also alright"
+access_change = Array[ExtResource("13_esd35")]([SubResource("Resource_ge3pg")])
+metadata/_custom_type_script = "uid://cg1jpv1aml84u"
+
+[sub_resource type="Resource" id="Resource_67xdk"]
+script = ExtResource("13_esd35")
+character_to_effect = 3
+metadata/_custom_type_script = "uid://c3lald0g7kupl"
+
+[sub_resource type="Resource" id="Resource_juyqu"]
+script = ExtResource("11_vlj36")
+action = "I'm tired"
+access_change = Array[ExtResource("13_esd35")]([SubResource("Resource_67xdk")])
+metadata/_custom_type_script = "uid://cg1jpv1aml84u"
+
+[sub_resource type="Resource" id="Resource_01e4t"]
+script = ExtResource("9_hyf7r")
+title = "intro guy"
+text = "yay"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_g2vx5"]
+script = ExtResource("10_4cq84")
+action = "I'm also alright"
+words = Array[ExtResource("9_hyf7r")]([SubResource("Resource_01e4t")])
+action_changes = Array[ExtResource("11_vlj36")]([SubResource("Resource_cmf6o"), SubResource("Resource_juyqu")])
+metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
+
+[sub_resource type="Resource" id="Resource_1tv8x"]
+script = ExtResource("13_esd35")
+character_to_effect = 3
+metadata/_custom_type_script = "uid://c3lald0g7kupl"
+
+[sub_resource type="Resource" id="Resource_dkf1o"]
+script = ExtResource("11_vlj36")
+action = "I'm tired"
+access_change = Array[ExtResource("13_esd35")]([SubResource("Resource_1tv8x")])
+metadata/_custom_type_script = "uid://cg1jpv1aml84u"
+
+[sub_resource type="Resource" id="Resource_o5dbe"]
+script = ExtResource("13_esd35")
+character_to_effect = 3
+metadata/_custom_type_script = "uid://c3lald0g7kupl"
+
+[sub_resource type="Resource" id="Resource_05qk3"]
+script = ExtResource("11_vlj36")
+action = "I'm also alright"
+access_change = Array[ExtResource("13_esd35")]([SubResource("Resource_o5dbe")])
+metadata/_custom_type_script = "uid://cg1jpv1aml84u"
+
+[sub_resource type="Resource" id="Resource_n1k41"]
+script = ExtResource("9_hyf7r")
+title = "intro guy"
+text = "you should probably go rest.."
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_d1550"]
+script = ExtResource("9_hyf7r")
+title = "you"
+text = "yeah, you're right"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_y221q"]
+script = ExtResource("10_4cq84")
+action = "I'm tired"
+words = Array[ExtResource("9_hyf7r")]([SubResource("Resource_n1k41"), SubResource("Resource_d1550")])
+action_changes = Array[ExtResource("11_vlj36")]([SubResource("Resource_dkf1o"), SubResource("Resource_05qk3")])
+metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
+
+[sub_resource type="Resource" id="Resource_tdydb"]
+script = ExtResource("13_esd35")
+character_to_effect = 2
+metadata/_custom_type_script = "uid://c3lald0g7kupl"
+
+[sub_resource type="Resource" id="Resource_r5j6y"]
+script = ExtResource("11_vlj36")
+action = "point out thing"
+access_change = Array[ExtResource("13_esd35")]([SubResource("Resource_tdydb")])
+metadata/_custom_type_script = "uid://cg1jpv1aml84u"
+
+[sub_resource type="Resource" id="Resource_i047o"]
+script = ExtResource("9_hyf7r")
+title = "you"
+text = "why do you have blood on you?"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_m1qon"]
+script = ExtResource("9_hyf7r")
+title = "intro guy"
+text = "uhh.."
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_raipi"]
+script = ExtResource("9_hyf7r")
+title = "intro guy"
+text = "you should go rest"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_1s8dy"]
+script = ExtResource("10_4cq84")
+action = "point out thing"
+words = Array[ExtResource("9_hyf7r")]([SubResource("Resource_i047o"), SubResource("Resource_m1qon"), SubResource("Resource_raipi")])
+action_changes = Array[ExtResource("11_vlj36")]([SubResource("Resource_r5j6y")])
+metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
+
+[sub_resource type="Resource" id="Resource_uvpyc"]
+script = ExtResource("9_hyf7r")
+title = "intro guy"
+text = "???"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_gklfo"]
+script = ExtResource("9_hyf7r")
+title = "intro guy"
+text = "(pushes you away slowly)"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_a2n4l"]
+script = ExtResource("10_4cq84")
+action = "(stare)"
+words = Array[ExtResource("9_hyf7r")]([SubResource("Resource_uvpyc"), SubResource("Resource_gklfo")])
+greater_details = 3
+metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
+
+[sub_resource type="Resource" id="Resource_jweyc"]
+script = ExtResource("7_hyf7r")
+action = "leave"
+character_connected = Array[int]([4])
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_2ejq0"]
+script = ExtResource("7_hyf7r")
+action = "(swap out)"
+character_connected = Array[int]([0, 2, 3])
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_p6nbe"]
+script = ExtResource("9_hyf7r")
+title = "dog"
+text = "good luck!"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_d1mft"]
+script = ExtResource("10_4cq84")
+action = "leave"
+words = Array[ExtResource("9_hyf7r")]([SubResource("Resource_p6nbe")])
+greater_details = 3
+metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
+
+[sub_resource type="Resource" id="Resource_k6xxn"]
+script = ExtResource("9_hyf7r")
+title = "dog"
+text = "wish me luck!"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_fp202"]
+script = ExtResource("10_4cq84")
+action = "(swap out)"
+words = Array[ExtResource("9_hyf7r")]([SubResource("Resource_k6xxn")])
+greater_details = 4
+metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
+
+[sub_resource type="Resource" id="Resource_cgrvo"]
+script = ExtResource("7_hyf7r")
+action = "leave"
+character_connected = Array[int]([0, 1, 3])
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_i3jik"]
+script = ExtResource("7_hyf7r")
+action = "(swap out)"
+character_connected = Array[int]([0, 1, 3])
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_xspv4"]
+script = ExtResource("9_hyf7r")
+title = "crow"
+text = "uh, bye"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_hwk5i"]
+script = ExtResource("10_4cq84")
+action = "leave"
+words = Array[ExtResource("9_hyf7r")]([SubResource("Resource_xspv4")])
+greater_details = 3
+metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
+
+[sub_resource type="Resource" id="Resource_gpu4l"]
+script = ExtResource("9_hyf7r")
+title = "crow"
+text = "I'll try"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_uepsr"]
+script = ExtResource("10_4cq84")
+action = "(swap out)"
+words = Array[ExtResource("9_hyf7r")]([SubResource("Resource_gpu4l")])
+greater_details = 4
+metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
+
+[sub_resource type="Resource" id="Resource_jwuk7"]
+script = ExtResource("7_hyf7r")
+action = "leave"
+character_connected = Array[int]([1, 2, 3])
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_3b18e"]
+script = ExtResource("7_hyf7r")
+action = "(swap out)"
+character_connected = Array[int]([1, 2, 3])
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_5p70r"]
+script = ExtResource("9_hyf7r")
+title = "raccoon"
+text = "see ya"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_dcj4e"]
+script = ExtResource("10_4cq84")
+action = "leave"
+words = Array[ExtResource("9_hyf7r")]([SubResource("Resource_5p70r")])
+greater_details = 3
+metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
+
+[sub_resource type="Resource" id="Resource_jhpek"]
+script = ExtResource("9_hyf7r")
+title = "raccoon"
+text = "I'll do my best"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_bnuk5"]
+script = ExtResource("10_4cq84")
+action = "(swap out)"
+words = Array[ExtResource("9_hyf7r")]([SubResource("Resource_jhpek")])
+greater_details = 4
+metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
+
+[sub_resource type="Resource" id="Resource_8ppgf"]
+script = ExtResource("7_hyf7r")
+action = "leave"
+character_connected = Array[int]([0, 1, 2])
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_rvcwb"]
+script = ExtResource("7_hyf7r")
+action = "(swap out)"
+character_connected = Array[int]([0, 1, 2])
+metadata/_custom_type_script = "uid://cyfwhfe2kje38"
+
+[sub_resource type="Resource" id="Resource_nnvh3"]
+script = ExtResource("9_hyf7r")
+title = "rabbit"
+text = "byeeeee"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_rw8k0"]
+script = ExtResource("10_4cq84")
+action = "leave"
+words = Array[ExtResource("9_hyf7r")]([SubResource("Resource_nnvh3")])
+greater_details = 3
+metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
+
+[sub_resource type="Resource" id="Resource_q16j0"]
+script = ExtResource("9_hyf7r")
+title = "rabbit"
+text = "I'm happy to help!"
+metadata/_custom_type_script = "uid://dmxv4647md3in"
+
+[sub_resource type="Resource" id="Resource_rxq38"]
+script = ExtResource("10_4cq84")
+action = "(swap out)"
+words = Array[ExtResource("9_hyf7r")]([SubResource("Resource_q16j0")])
+greater_details = 4
+metadata/_custom_type_script = "uid://cyki6qnhkgn0e"
+
 [node name="Node3D" type="Node3D"]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+[node name="terrain" type="CSGCombiner3D" parent="."]
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="terrain"]
 size = Vector3(15, 1, 15)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.5, -5)
 size = Vector3(3, 4, 5)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -8)
 size = Vector3(15, 5, 7)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="terrain"]
 transform = Transform3D(0.9396926, 0.34202012, 0, -0.34202012, 0.9396926, 0, 0, 0, 1, 0.29, 0.1, -3.5)
 size = Vector3(12, 5, 2)
 
@@ -240,29 +493,6 @@ omni_range = 300.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_808s8")
 
-[node name="npc" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.5, 0)
-script = ExtResource("3_0klkc")
-actions = Array[ExtResource("7_hyf7r")]([SubResource("Resource_4cq84"), SubResource("Resource_x05qy"), SubResource("Resource_0253g")])
-export_dialogue = Array[ExtResource("8_64m0k")]([SubResource("Resource_kvok1"), SubResource("Resource_s7ufk"), SubResource("Resource_g2vx5")])
-
-[node name="StaticBody3D" type="StaticBody3D" parent="npc"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="npc/StaticBody3D"]
-shape = SubResource("CapsuleShape3D_ln6bc")
-
-[node name="Sprite3D" type="Sprite3D" parent="npc/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.39999998, 0)
-billboard = 2
-texture = ExtResource("2_cujlr")
-
-[node name="Interaction_range" type="Area3D" parent="npc" groups=["player"]]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="npc/Interaction_range"]
-shape = SubResource("CapsuleShape3D_trcpl")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="conversation_manager" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("speaker_title", "writing", "actions_container") groups=["conversation_menu"]]
@@ -278,6 +508,7 @@ writing = NodePath("VBoxContainer/Panel/HBoxContainer/VBoxContainer/MarginContai
 actions_container = NodePath("VBoxContainer/Panel/HBoxContainer/Panel/MarginContainer/ScrollContainer/actions container")
 leave_action = SubResource("Resource_d7nge")
 continue_action = SubResource("Resource_rkh4j")
+swap_action = SubResource("Resource_qo2hn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/conversation_manager"]
 layout_mode = 1
@@ -376,5 +607,58 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("4_g22w2")
 
-[connection signal="body_entered" from="npc/Interaction_range" to="npc" method="_on_interaction_range_body_entered"]
-[connection signal="body_exited" from="npc/Interaction_range" to="npc" method="_on_interaction_range_body_exited"]
+[node name="npcs" type="Node" parent="."]
+
+[node name="npc" parent="npcs" instance=ExtResource("6_xxnll")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, 0)
+speaker_name = "intro guy"
+visual = ExtResource("4_hyf7r")
+actions = Array[ExtResource("7_hyf7r")]([SubResource("Resource_vlj36"), SubResource("Resource_esd35"), SubResource("Resource_64m0k"), SubResource("Resource_qw4sj"), SubResource("Resource_x05qy"), SubResource("Resource_0253g")])
+export_dialogue = Array[ExtResource("10_4cq84")]([SubResource("Resource_emxd4"), SubResource("Resource_rkaph"), SubResource("Resource_g2vx5"), SubResource("Resource_y221q"), SubResource("Resource_1s8dy"), SubResource("Resource_a2n4l")])
+interaction_allowed = null
+
+[node name="character_swapping_manager" type="Node" parent="npcs"]
+script = ExtResource("14_qw4sj")
+
+[node name="dog" parent="npcs/character_swapping_manager" instance=ExtResource("6_xxnll")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.4795053, 0.4)
+speaker_name = "dog"
+starting_phrases = ["Hiya :D"]
+visual = ExtResource("3_4cq84")
+actions = Array[ExtResource("7_hyf7r")]([SubResource("Resource_jweyc"), SubResource("Resource_2ejq0")])
+export_dialogue = Array[ExtResource("10_4cq84")]([SubResource("Resource_d1mft"), SubResource("Resource_fp202")])
+interaction_allowed = null
+
+[node name="swapping_information" parent="npcs/character_swapping_manager/dog" instance=ExtResource("15_qw4sj")]
+
+[node name="crow" parent="npcs/character_swapping_manager" instance=ExtResource("6_xxnll")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8, 2.4795053, 2.38)
+speaker_name = "crow"
+starting_phrases = ["hey"]
+visual = ExtResource("4_hyf7r")
+actions = Array[ExtResource("7_hyf7r")]([SubResource("Resource_cgrvo"), SubResource("Resource_i3jik")])
+export_dialogue = Array[ExtResource("10_4cq84")]([SubResource("Resource_hwk5i"), SubResource("Resource_uepsr")])
+
+[node name="swapping_information" parent="npcs/character_swapping_manager/crow" instance=ExtResource("15_qw4sj")]
+swap_to = 2
+
+[node name="raccoon" parent="npcs/character_swapping_manager" instance=ExtResource("6_xxnll")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.450928, 4.4)
+speaker_name = "raccoon"
+visual = ExtResource("2_xxnll")
+actions = Array[ExtResource("7_hyf7r")]([SubResource("Resource_jwuk7"), SubResource("Resource_3b18e")])
+export_dialogue = Array[ExtResource("10_4cq84")]([SubResource("Resource_dcj4e"), SubResource("Resource_bnuk5")])
+
+[node name="swapping_information" parent="npcs/character_swapping_manager/raccoon" instance=ExtResource("15_qw4sj")]
+swap_to = 0
+
+[node name="rabbit" parent="npcs/character_swapping_manager" instance=ExtResource("6_xxnll")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.5006187, 6.4)
+speaker_name = "rabbit"
+starting_phrases = ["Hiiii!"]
+visual = ExtResource("5_vlj36")
+actions = Array[ExtResource("7_hyf7r")]([SubResource("Resource_8ppgf"), SubResource("Resource_rvcwb")])
+export_dialogue = Array[ExtResource("10_4cq84")]([SubResource("Resource_rw8k0"), SubResource("Resource_rxq38")])
+
+[node name="swapping_information" parent="npcs/character_swapping_manager/rabbit" instance=ExtResource("15_qw4sj")]
+swap_to = 3

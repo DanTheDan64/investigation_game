@@ -5,12 +5,10 @@ extends Node3D
 @export var speaker_name: String = "name"
 @export var starting_phrases: Array = ["hey!", "hi", "hello there"]
 
-
+@export var visual: CompressedTexture2D
 
 
 @export var actions: Array[export_action_base]
-
-
 
 @export var export_dialogue: Array[export_dialogue_base]
 
@@ -34,6 +32,7 @@ var dialogue: Dictionary = {
 }
 
 
+@onready var sprite = $StaticBody3D/Sprite3D
 
 
 
@@ -41,12 +40,13 @@ var dialogue: Dictionary = {
 @onready var player = get_tree().get_first_node_in_group("player")
 
 var can_interact = false
+@export var interaction_allowed: bool = true
 
 
 func _input(event):
 	if event is InputEvent:
 		if Input.is_action_just_pressed("interact"):
-			if player.state != player.STATES.INTERACTING and can_interact:
+			if player.state != player.STATES.INTERACTING and can_interact and interaction_allowed:
 				conversation_manager.start_conversation(self)
 
 
@@ -55,18 +55,19 @@ func _ready():
 	for item in export_dialogue:
 		dialogue[item.action] = [item.words, item.action_changes, item.greater_details]
 	
-	#for item in dialogue:
-		#print(item)
-		#print(dialogue[item])
-		#print()
+	if visual:
+		sprite.texture = visual
 
 
 func _process(_delta):
 	if Engine.is_editor_hint():
 		if export_dialogue.size() != actions.size():
 			export_dialogue.resize(actions.size())
-			#for item in export_dialogue:
-				#item = 
+		
+		if visual:
+			sprite.texture = visual
+		else:
+			sprite.texture = "res://assets/2D/icon.svg"
 
 
 

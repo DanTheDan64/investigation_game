@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dopqymm5dahgj"]
+
+[ext_resource type="Script" uid="uid://cjsuln8fdqvu3" path="res://conversations/scripts/swapping_information.gd" id="1_oleej"]
+
+[node name="swapping_information" type="Node"]
+script = ExtResource("1_oleej")
+swap_to = 1
