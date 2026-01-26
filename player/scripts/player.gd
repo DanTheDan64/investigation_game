@@ -49,9 +49,6 @@ func _input(event):
 			rotation_degrees.y += -event.relative.x * camera_sensitivity
 			camera_position_holder.rotation_degrees.x += -event.relative.y * camera_sensitivity
 			camera_position_holder.rotation_degrees.x = clamp(camera_position_holder.rotation_degrees.x, -70, 20)
-	elif InputEvent:
-		if Input.is_action_pressed("escape"):
-			get_tree().quit()
 
 
 func _ready():

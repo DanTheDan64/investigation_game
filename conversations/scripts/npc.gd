@@ -8,7 +8,7 @@ extends Node3D
 @export var visual: CompressedTexture2D
 
 
-@export var actions: Array[export_action_base]
+var actions: Array[export_action_base]
 
 @export var export_dialogue: Array[export_dialogue_base]
 
@@ -54,6 +54,12 @@ func _ready():
 	dialogue.clear()
 	for item in export_dialogue:
 		dialogue[item.action] = [item.words, item.action_changes, item.greater_details]
+		
+		var action_var_mover: export_action_base = export_action_base.new()
+		action_var_mover.action = item.action
+		action_var_mover.characters_connected = item.characters_connected
+		
+		actions.append(action_var_mover)
 	
 	if visual:
 		sprite.texture = visual
@@ -61,8 +67,6 @@ func _ready():
 
 func _process(_delta):
 	if Engine.is_editor_hint():
-		if export_dialogue.size() != actions.size():
-			export_dialogue.resize(actions.size())
 		
 		if visual:
 			sprite.texture = visual

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="holiday game jam"
-run/main_scene="uid://tbt13yx4jqlu"
+run/main_scene="uid://chbuy6den3ono"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://assets/2D/icon.svg"
 

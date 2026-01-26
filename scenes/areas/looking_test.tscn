@@ -1,0 +1,123 @@
+[gd_scene load_steps=13 format=3 uid="uid://chbuy6den3ono"]
+
+[ext_resource type="Script" uid="uid://b4f27io6frs56" path="res://inspecting/scripts/inspector.gd" id="1_lyql4"]
+[ext_resource type="Script" uid="uid://ikmaqvrup5ma" path="res://inspecting/scenes/inspectable.gd" id="2_fkvjw"]
+[ext_resource type="Texture2D" uid="uid://cekynk6au5q46" path="res://assets/2D/icon.svg" id="2_nje75"]
+[ext_resource type="Texture2D" uid="uid://bs045qs6f12aq" path="res://assets/2D/kenney_prototype_textures/purple/texture_01.png" id="4_ux6uq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_csarf"]
+
+[sub_resource type="Sky" id="Sky_g8iyb"]
+sky_material = SubResource("ProceduralSkyMaterial_csarf")
+
+[sub_resource type="Environment" id="Environment_lyql4"]
+background_mode = 2
+sky = SubResource("Sky_g8iyb")
+glow_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_nje75"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lyql4"]
+size = Vector3(1.4, 1.2, 2.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epwkd"]
+albedo_texture = ExtResource("4_ux6uq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ux6uq"]
+metallic = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_epwkd"]
+material = SubResource("StandardMaterial3D_ux6uq")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="terrain" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1.8384777, 0, -1.8384777)
+size = Vector3(15, 0.2, 12)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, 1.3000001, 0.30000004)
+size = Vector3(1.2, 2.4, 2.4)
+
+[node name="lighting" type="Node" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4, 100, 0)
+omni_range = 300.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="lighting"]
+transform = Transform3D(0.18301277, 0.9659259, -0.18301259, 0.95387876, -0.1294096, 0.27086622, 0.23795307, -0.2241438, -0.9450598, 0, 13.2, -24.6)
+light_energy = 3.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="lighting"]
+environment = SubResource("Environment_lyql4")
+
+[node name="inspector" type="Node3D" parent="." node_paths=PackedStringArray("ray_cast")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 2.4, 2.6000001)
+script = ExtResource("1_lyql4")
+ray_cast = NodePath("camera_director/RayCast3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="inspector"]
+transform = Transform3D(0.7071068, 0.3535534, -0.61237246, 0, 0.8660251, 0.50000006, 0.7071068, -0.3535534, 0.61237246, 3.0000007, -2.1999998, -1.3999997)
+mesh = SubResource("SphereMesh_nje75")
+skeleton = NodePath("../camera")
+
+[node name="camera" type="Camera3D" parent="inspector"]
+transform = Transform3D(0.7071068, 0.5, -0.5, 0, 0.7071068, 0.70710677, 0.7071068, -0.5, 0.5, -2.3841858e-07, 0.4000001, 0)
+
+[node name="camera_director" type="Node3D" parent="inspector"]
+transform = Transform3D(0.70710677, 0.49999997, -0.49999997, 0, 0.70710677, 0.70710677, 0.70710677, -0.49999997, 0.49999997, 0, 0, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="inspector/camera_director"]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999998, 2.9802322e-08, 0, 2.9802322e-08, 0.9999998, 0, 0.28284276, 0.28284264)
+target_position = Vector3(0, 0, -36.05)
+
+[node name="inspectable" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0, -1)
+script = ExtResource("2_fkvjw")
+metadata/_edit_group_ = true
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="inspectable"]
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="inspectable/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52059364, 0.6, 0.79999995)
+size = Vector3(0.2, 1, 0.2)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="inspectable/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47940642, 0.6, 0.79999995)
+size = Vector3(0.2, 1, 0.2)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="inspectable/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52059364, 0.6, -0.79999983)
+size = Vector3(0.2, 1, 0.2)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="inspectable/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47940642, 0.6, -0.79999983)
+size = Vector3(0.2, 1, 0.2)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="inspectable/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020593628, 1, 0)
+size = Vector3(1.2, 0.2, 1.8000001)
+
+[node name="Area3D" type="Area3D" parent="inspectable"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="inspectable/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_lyql4")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_nje75")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+material_override = SubResource("StandardMaterial3D_epwkd")
+mesh = SubResource("SphereMesh_epwkd")

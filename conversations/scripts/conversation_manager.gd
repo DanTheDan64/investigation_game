@@ -54,8 +54,8 @@ func make_actions(actions_given):
 	# make new actions
 	for item in actions_given:
 		# if the player is using a character with access to this option
-		if (player.character in item.character_connected)\
-		or (global.CHARACTERS.ALL in item.character_connected):
+		if (player.character in item.characters_connected)\
+		or (global.CHARACTERS.ALL in item.characters_connected):
 			
 			var new_action = ACTION.instantiate()
 			actions_container.add_child(new_action)
@@ -114,7 +114,7 @@ func action_made(action):
 						#print(actions[index].action + ": no match")
 						continue
 					else:
-						character_list_to_change = actions[index].character_connected
+						character_list_to_change = actions[index].characters_connected
 						#print(actions[index].action + ": match")
 						
 						# iterate over changing info to bring over to actions
